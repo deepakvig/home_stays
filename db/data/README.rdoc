@@ -1,0 +1,74 @@
+The purpose of this test is to build a simple Ruby on Rails application that allows
+to search for available rooms in host families.
+
+There are 3 files containing data that must be imported into the system:
+
+- hosts.csv
+
+    List of host families defined by the following attributes:
+
+    ref: Unique identifier for that host
+    name: Name of the host
+    address: Address of the host
+
+- rooms.csv
+
+    List of rooms for each one of the hosts, defined by the following attributes:
+
+    ref: Unique identifier for the room
+    host_ref: Identifier of the host the room belongs to
+    capacity: Number of people that can sleep in the room
+
+- bookings.csv
+
+    List of bookings already made for the rooms, defined by:
+
+    ref: Unique identifier for the booking
+    room_ref: Identifier of the booked room
+    start_date: Start date of the booking with format 'yyyy-mm-dd'
+    end_date: End date of the booking with format 'yyyy-mm-dd'
+    number_of_guests: Number of guests staying in the room for that booking
+
+
+Deliver a Rails application including the following functionality:
+
+  * Rake task to import the files hosts.csv, rooms.csv and bookings.csv
+  * Search the availability of hosts/rooms for a period with input fields:
+    - Start date: day, month and year
+    - End date: day, month and year
+    - Number of guests: integer
+
+    It should return a list of hosts which have rooms available for that period
+    and that number of guests (in the same room), showing which rooms are available
+    for that host and period and if those rooms already have any guests in any days within that period.
+
+For example, for the data provided in hosts.csv, rooms.csv and bookings.csv:
+
+Search #1:
+
+    Start Date: 2012-06-01
+    End Date: 2012-06-04
+    Guests: 1
+
+  Result:
+
+    host#1:
+      room#1 is available (1 booked, 1 free out of 2 total)
+
+    host#2:
+      room#2 is available (0 booked, 1 free out of 1 total)
+      room#3 is available (0 booked, 1 free out of 1 total)
+
+Search #2:
+
+    Start Date: 2012-06-10
+    End Date: 2012-06-25
+    Guests: 1
+
+  Result:
+
+    host#2:
+      room#3 is available (0 booked, 1 free out of 1 total)
+
+A description of how the problem was solved will be included with any possible considerations and instructions to
+run the application and load the data.

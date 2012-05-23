@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ref: MyString
+  start_date: 2012-05-23
+  end_date: 2012-05-23
+  number_of_guests: 1
+  room: 
+
+two:
+  ref: MyString
+  start_date: 2012-05-23
+  end_date: 2012-05-23
+  number_of_guests: 1
+  room: 

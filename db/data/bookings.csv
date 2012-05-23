@@ -1,0 +1,4 @@
+ref,room_ref,start_date,end_date,number_of_guests
+b#1,room#1,2012-06-01,2012-06-10,1
+b#2,room#1,2012-06-20,2012-07-01,2
+b#3,room#2,2012-06-05,2012-06-15,1
