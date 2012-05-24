@@ -1,0 +1,34 @@
+= form_for @search, :url => 'search' , :html => { :class => "well form-horizontal" } do |f|
+  - if @search.errors.any?
+    %h2 Search cannot be perform due to following errors
+    - @search.errors.messages.each do |attr, message|
+      .error
+        %span.label.label-important
+          - if attr.to_s != "base"
+            = attr.to_s + " " + message.first.to_s
+          - else
+            = message.first.to_s
+        %br
+  %fieldset
+    .control-group
+      = f.label :start_date , :class => "control-label"
+      .controls
+        = f.text_field :start_date
+  %fieldset
+    .control-group
+      = f.label :end_date , :class => "control-label"
+      .controls
+        = f.text_field :end_date
+  %fieldset
+    .control-group
+      = f.label :number_of_guests , :class => "control-label"
+      .controls
+        = f.select :number_of_guests, 1..10
+  .form-actions 
+    = f.submit "Search", :class => "btn btn-primary"
+
+%script
+  $(function() {
+  $( "#search_start_date" ).datepicker({ dateFormat: "dd-mm-yy" });
+  $( "#search_end_date" ).datepicker({ dateFormat: "dd-mm-yy" });
+  });

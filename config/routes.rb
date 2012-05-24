@@ -1,4 +1,9 @@
 HomeStays::Application.routes.draw do
+ 
+  get 'search' => 'search#new'
+  post 'search' => 'search#create'
+  root :to => 'search#new'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
