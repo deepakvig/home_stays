@@ -1,7 +1,6 @@
 class SearchController < ApplicationController
   def new
     @search = Search.new
-    @results = []
   end
 
   def create
@@ -9,7 +8,6 @@ class SearchController < ApplicationController
     if @search.valid?
       @results, @pending_capacity = @search.bookings
     end
-    render :action => 'new'
   end
 
 end
