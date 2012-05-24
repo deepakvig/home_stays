@@ -2,7 +2,7 @@ class CreateRooms < ActiveRecord::Migration
   def change
     create_table :rooms do |t|
       t.string :ref
-      t.string :capacity
+      t.integer :capacity
       t.references :host
 
       t.timestamps

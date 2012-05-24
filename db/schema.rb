@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20120523125031) do
 
   create_table "rooms", :force => true do |t|
     t.string   "ref"
-    t.string   "capacity"
+    t.integer  "capacity"
     t.integer  "host_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

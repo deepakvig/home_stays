@@ -25,11 +25,15 @@ class Search
   end
 
   def bookings
-    start_date_bookings = Booking.where( "start_date < ? AND end_date > ?", start_date.to_date,start_date.to_date ).map(&:room)
-    end_date_bookings = Booking.where( "start_date < ? AND end_date > ?", end_date.to_date,end_date.to_date ).map(&:room)
-    date_bookings = start_date_bookings + end_date_bookings
-    return date_bookings.uniq
-    
+    s_date = start_date.to_date
+    e_date = end_date.to_date
+    guests = number_of_guests.to_i
+    bookings = Booking.where( "(start_date <= ? AND end_date >= ?) OR
+          (start_date <= ? AND end_date >= ?) OR
+          (start_date >= ? AND end_date <= ?) OR 
+          (start_date <= ? AND end_date >= ?)",
+          s_date,s_date,e_date,e_date,s_date,e_date,s_date, e_date ).select{|p| p.number_of_guests + guests > p.room.capacity}.map(&:room)
+    return bookings
   end
 
 end

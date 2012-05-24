@@ -1,0 +1,5 @@
+- @results.group_by(&:host_id).sort.each do |host, result|
+  = result.first.host.name
+  - result.each do |room|
+    = room.ref
+  %br
