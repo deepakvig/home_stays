@@ -7,6 +7,8 @@ class SearchController < ApplicationController
     @search = Search.new(params[:search])
     if @search.valid?
       @results, @pending_capacity = @search.bookings
+    else
+      render :new
     end
   end
 
