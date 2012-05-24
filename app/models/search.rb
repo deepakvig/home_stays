@@ -32,8 +32,22 @@ class Search
           (start_date <= ? AND end_date >= ?) OR
           (start_date >= ? AND end_date <= ?) OR 
           (start_date <= ? AND end_date >= ?)",
-          s_date,s_date,e_date,e_date,s_date,e_date,s_date, e_date ).select{|p| p.number_of_guests + guests > p.room.capacity}.map(&:room)
-    return bookings
+          s_date,s_date,e_date,e_date,s_date,e_date,s_date, e_date )
+    completely_filled = []
+    pending_capacity = {}
+    bookings.group_by(&:room_id).sort.each do |room, booking|
+      booked_guests = 0
+      booking.each do |b|
+        booked_guests += b.number_of_guests
+      end
+      if booked_guests + guests > booking.last.room.capacity
+        completely_filled << booking.last.room
+      else
+        pending_capacity.merge!({booking.last.room.id.to_s => booking.last.room.capacity - booked_guests })
+      end
+    end
+    p pending_capacity
+    return Room.where("capacity >= ?",number_of_guests.to_i ) - completely_filled, pending_capacity
   end
 
 end

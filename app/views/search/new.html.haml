@@ -1,2 +1,8 @@
 = render 'form'
-= render 'result'
+- if @results.count > 0
+  %h2 Available Rooms
+  .row
+    .span16
+      = render 'result'
+- else
+  %h2 No vacant Room in that Date Range

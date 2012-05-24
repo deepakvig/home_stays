@@ -29,6 +29,19 @@
 
 %script
   $(function() {
-  $( "#search_start_date" ).datepicker({ dateFormat: "dd-mm-yy" });
-  $( "#search_end_date" ).datepicker({ dateFormat: "dd-mm-yy" });
+  var dates = $( "#search_end_date, #search_start_date" ).datepicker({
+  dateFormat: "dd-mm-yy",
+  defaultDate: "+1w",
+  changeMonth: true,
+  numberOfMonths: 1,
+  onSelect: function( selectedDate ) {
+  var option = this.id == "search_start_date" ? "minDate" : "maxDate",
+  instance = $( this ).data( "datepicker" ),
+  date = $.datepicker.parseDate(
+  instance.settings.dateFormat ||
+  $.datepicker._defaults.dateFormat,
+  selectedDate, instance.settings );
+  dates.not( this ).datepicker( "option", option, date );
+  }
+  });
   });

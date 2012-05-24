@@ -1,5 +1,9 @@
 - @results.group_by(&:host_id).sort.each do |host, result|
-  = result.first.host.name
+  %h2= result.first.host.name + " (" + result.first.host.ref + ") " 
   - result.each do |room|
-    = room.ref
-  %br
+    - if @pending_capacity["#{room.id}"]
+      - booked = room.capacity - @pending_capacity["#{room.id}"]
+      = "#{room.ref} is available (" + booked.to_s + " booked, " + @pending_capacity["#{room.id}"].to_s + " free out of " + room.capacity.to_s + " total)"
+    - else
+      = "#{room.ref} is available (0 booked, " + room.capacity.to_s + " free out of " + room.capacity.to_s + " total)"
+    %br

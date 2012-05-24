@@ -19,6 +19,7 @@ group :assets do
   # gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'jquery-ui-rails'
 end
 
 gem 'dynamic_form'
@@ -26,6 +27,16 @@ gem 'formtastic'
 gem 'jquery-rails'
 gem 'therubyracer'
 gem "haml"
+
+gem 'database_cleaner'
+gem 'cucumber-rails'
+gem 'cucumber'
+gem 'rspec-rails'
+gem 'spork'
+gem 'launchy'   # so we can use : Then show me the page
+
+gem 'machinist', '>= 2.0.0.beta1'
+gem 'faker'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
