@@ -14,7 +14,7 @@ Go to the homepage ( It will redirect to the search page )
 I have used 
   1) twitter bootstrap for the ui. 
   2) jQuery UI for calendar (In start and end date).
-  3) Cucumber for the TDD.
+  3) Cucumber for the TDD
 
 
 == To solve the problem
